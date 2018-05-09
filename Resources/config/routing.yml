@@ -1,0 +1,3 @@
+mc_utils_homepage:
+    path:     /
+    defaults: { _controller: MCUtilsBundle:Default:index }

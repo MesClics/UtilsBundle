@@ -1,0 +1,34 @@
+services:
+#    mc_utils.example:
+#        class: MC\UtilsBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    
+    #récupère un item + celui qui le précède et celui qui le suit dans une liste de résultats
+    mc_utils.prevcurrnext:
+        class: MC\UtilsBundle\PrevCurrNext\MCPrevCurrNext
+
+    #permet la pagination d'une liste de résultats
+    mc_utils.paginator:
+        class: MC\UtilsBundle\Paginator\MCPaginator
+        arguments:
+            - 15 #nb d'items par page : perPage
+
+    #ajoute une extension twig permettant l'affichage d'une liste de résultat après pagination
+    mc_utils.twig.pagination_extension:
+        class: MC\UtilsBundle\Twig\PaginationExtension
+        arguments:
+            - "@mc_utils.paginator"
+        tags:
+            - { name: twig.extension }
+    
+    #permet l'ajout d'attributs dans une vue twig de manière plus lisible
+    mc_utils.html_attr_adder:
+        class: MC\UtilsBundle\HTMLAttrAdder\HTMLAttrAdder
+
+    #ajoute une extension twig permettant l'ajout d'attributs suivant des conditions if else if de manière plus lisible pour le code
+    mc_utils.twig.html_attr_adder_extension:
+        class: MC\UtilsBundle\Twig\HTMLAttrAdderExtension
+        arguments:
+            - "@mc_utils.html_attr_adder"
+        tags:
+            - { name: twig.extension }
