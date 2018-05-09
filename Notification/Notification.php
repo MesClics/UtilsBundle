@@ -1,6 +1,6 @@
 <?php
 
-namespace MC\UtilsBundle\Notification;
+namespace MesClics\UtilsBundle\Notification;
 
 class Notification{
     private $label;

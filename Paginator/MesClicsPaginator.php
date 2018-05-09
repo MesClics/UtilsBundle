@@ -1,7 +1,7 @@
 <?php
-    namespace MC\UtilsBundle\Paginator;
+    namespace MesClics\UtilsBundle\Paginator;
 
-    class MCPaginator{
+    class MesClicsPaginator{
         private $perPage;
         private $splitArray;
 
@@ -11,7 +11,7 @@
 
         /**
          * Découpe le tableau en sous-tableaux correspondant aux pages de résultats
-         * Renvoie l'objet MCPaginator
+         * Renvoie l'objet MesClicsPaginator
          */
         public function paginate($array){
             $this->splitArray = array_chunk($array, $this->perPage);

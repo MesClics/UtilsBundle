@@ -1,5 +1,5 @@
 <?php
-namespace MC\UtilsBundle\FormGenerator;
+namespace MesClics\UtilsBundle\FormGenerator;
 
 abstract class FormGenerator{
     private $object;
@@ -23,8 +23,8 @@ abstract class FormGenerator{
 //Client form Generator :
     
     // private $client;
-    // const NEW_CLIENT = "MC\EspaceClient\Form\ClientType";
-    // const EDIT_CLIENT = "MC\EspaceClient\Form\ClientType";
+    // const NEW_CLIENT = "MesClics\EspaceClient\Form\ClientType";
+    // const EDIT_CLIENT = "MesClics\EspaceClient\Form\ClientType";
 
     // public function setClient(Client $client){
     //     $this->client = $client;

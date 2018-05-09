@@ -1,12 +1,12 @@
 <?php
 
-namespace MC\UtilsBundle\FormManager;
+namespace MesClics\UtilsBundle\FormManager;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Form\Form;
-use MC\UtilsBundle\Notification\Notification;
+use MesClics\UtilsBundle\Notification\Notification;
 
 abstract class FormManager{
     private $em;

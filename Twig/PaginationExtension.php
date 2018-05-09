@@ -1,12 +1,12 @@
 <?php
-namespace MC\UtilsBundle\Twig;
+namespace MesClics\UtilsBundle\Twig;
 
-use MC\UtilsBundle\Paginator\MCPaginator;
+use MesClics\UtilsBundle\Paginator\MesClicsPaginator;
 
 class PaginationExtension extends \Twig_Extension{
     private $paginator;
 
-    public function __construct(MCPaginator $paginator){
+    public function __construct(MesClicsPaginator $paginator){
         $this->paginator = $paginator;
     }
 

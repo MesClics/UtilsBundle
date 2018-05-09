@@ -1,5 +1,5 @@
 <?php
-namespace MC\UtilsBundle\FormProvider;
+namespace MesClics\UtilsBundle\FormProvider;
 
 abstract class FormProvider{
     

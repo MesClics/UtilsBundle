@@ -1,7 +1,7 @@
 <?php
-namespace MC\UtilsBundle\Twig;
+namespace MesClics\UtilsBundle\Twig;
 
-use MC\UtilsBundle\HTMLAttrAdder\HTMLAttrAdder;
+use MesClics\UtilsBundle\HTMLAttrAdder\HTMLAttrAdder;
 
 class HTMLAttrAdderExtension extends \Twig_Extension{
     private $HTMLAttrAdder;

@@ -1,5 +1,5 @@
 <?php
-namespace MC\UtilsBundle\HTMLAttrAdder;
+namespace MesClics\UtilsBundle\HTMLAttrAdder;
 use Symfony\Component\OptionsResolver\Exception\InvalidArgumentException;
 
 class HTMLAttrAdder{

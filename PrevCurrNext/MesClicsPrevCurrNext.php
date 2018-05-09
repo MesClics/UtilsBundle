@@ -1,7 +1,7 @@
 <?php
-namespace MC\UtilsBundle\PrevCurrNext;
+namespace MesClics\UtilsBundle\PrevCurrNext;
 
-class MCPrevCurrNext{
+class MesClicsPrevCurrNext{
     private $results = null;
     private $current = null;
     private $previous = null;
