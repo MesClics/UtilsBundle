@@ -20,7 +20,22 @@
     },
     "require": {
         "twig/twig": "^1.0||^2.0",
+        "mesclics/admin-bundle": "*"
     },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "mesclics/admin-bundle",
+                "version": "master",
+                "source": {
+                    "url": "https://github.com/MesClics/AdminBundle.git",
+                    "type": "git",
+                    "reference": "master"
+                }
+            }
+        }
+    ]
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^3.0"
