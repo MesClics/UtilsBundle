@@ -1,2 +1,4 @@
 # ignore le dossier Tests
 Tests/*
+#ignore le fichier routing
+Resources/config/routing.yml
