@@ -1,3 +1,0 @@
-mesclics_utils_homepage:
-    path:     /
-    defaults: { _controller: MesClicsUtilsBundle:Default:index }
