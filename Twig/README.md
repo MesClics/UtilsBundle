@@ -9,7 +9,7 @@ Twig vérifie que la variable nécessite le pluriel (si la valeur de l'intest su
 ```twig
 {{ pluralize(string singulier, string pluriel, int|array variable) }}
 ```
-Ex: Imaginons que nous ayons une variable "pers" qui contient .
+Ex: Imaginons que nous ayons une variable "pers" qui contient soit directement un nombre de personnes soit un tableau de personnes.
 ```twig
 <p>Il y a {{ personnes|length }} {{ pluralize("personne", "personnes", pers)}}
 ````
