@@ -32,3 +32,15 @@ services:
             - "@mesclics_utils.html_attr_adder"
         tags:
             - { name: twig.extension }
+
+    #permet de spécifier 2 othographes pour une même variable (singlulier et pluriel) qui se déclienra de façon automatique en fonction de la "longueur" d'une variable
+    mesclics_utils.pluralizer:
+        class: MesClics\UtilsBundle\Pluralizer\MesClicsPluralizer
+    
+    #ajoute une extension twig permettant la conjugaison d'une string au singulier ou pluriel en fonction de la "longueur d'una variable"
+    mesclics_utils.twig.pluralizer_extension:
+        class: MesClics\UtilsBundle\Twig\PluralizerExtension
+        arguments:
+            - "@mesclics_utils.pluralizer"
+        tags:
+            - { name: twig.extension }
