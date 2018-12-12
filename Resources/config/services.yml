@@ -44,3 +44,15 @@ services:
             - "@mesclics_utils.pluralizer"
         tags:
             - { name: twig.extension }
+
+    mesclics_utils.apis_manager:
+        class: MesClics\UtilsBundle\ApisManager\ApisManager
+        arguments:
+         - '%apis_classes%'
+         - '@session'
+
+    mesclics_utils.trello_api:
+        class: MesClics\UtilsBundle\ApisManager\RestApis\TrelloApi\TrelloApi
+        arguments:
+            - '%trello%'
+            - '@session'
