@@ -8,7 +8,7 @@ class MesClicsPrevCurrNext{
     private $next = null;
     private $desc = null;
 
-    public function handle($current, $results, $desc = false){
+    public function handle($current, array $results, bool $desc = false){
         $this->desc = $desc;
         $this->results = $results;
         $this->current = $current;
