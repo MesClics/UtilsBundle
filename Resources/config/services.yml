@@ -6,11 +6,6 @@ services:
     #récupère un item + celui qui le précède et celui qui le suit dans une liste de résultats
     mesclics_utils.prevcurrnext:
         class: MesClics\UtilsBundle\PrevCurrNext\MesClicsPrevCurrNext
-
-    
-    MesClics\UtilsBundle\Paginator\MesClicsPaginator:
-        arguments:
-            - $perPage: 15
     
     mesclics_utils.apis_manager:
         class: MesClics\UtilsBundle\ApisManager\ApisManager
