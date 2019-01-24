@@ -2,19 +2,14 @@
     namespace MesClics\UtilsBundle\Paginator;
 
     class MesClicsPaginator{
-        private $perPage;
         private $splitArray;
 
-        public function __construct($perPage){
-            $this->perPage = $perPage;
-        }
-
         /**
-         * Découpe le tableau en sous-tableaux correspondant aux pages de résultats
+         * Découpe le tableau en sous-tableaux correspondant aux pages de résultats (selon le nb de résultats souhaité par page $perPage)
          * Renvoie l'objet MesClicsPaginator
          */
-        public function paginate($array){
-            $this->splitArray = array_chunk($array, $this->perPage);
+        public function paginate(array $array, int $perPage){
+            $this->splitArray = array_chunk($array, $perPage);
             return $this;
         }
 

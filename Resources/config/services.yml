@@ -7,44 +7,11 @@ services:
     mesclics_utils.prevcurrnext:
         class: MesClics\UtilsBundle\PrevCurrNext\MesClicsPrevCurrNext
 
-    #permet la pagination d'une liste de résultats
-    mesclics_utils.paginator:
-        class: MesClics\UtilsBundle\Paginator\MesClicsPaginator
-        arguments:
-            - 15 #nb d'items par page : perPage
-
-    #ajoute une extension twig permettant l'affichage d'une liste de résultat après pagination
-    mesclics_utils.twig.pagination_extension:
-        class: MesClics\UtilsBundle\Twig\PaginationExtension
-        arguments:
-            - "@mesclics_utils.paginator"
-        tags:
-            - { name: twig.extension }
     
-    #permet l'ajout d'attributs dans une vue twig de manière plus lisible
-    mesclics_utils.html_attr_adder:
-        class: MesClics\UtilsBundle\HTMLAttrAdder\HTMLAttrAdder
-
-    #ajoute une extension twig permettant l'ajout d'attributs suivant des conditions if else if de manière plus lisible pour le code
-    mesclics_utils.twig.html_attr_adder_extension:
-        class: MesClics\UtilsBundle\Twig\HTMLAttrAdderExtension
+    MesClics\UtilsBundle\Paginator\MesClicsPaginator:
         arguments:
-            - "@mesclics_utils.html_attr_adder"
-        tags:
-            - { name: twig.extension }
-
-    #permet de spécifier 2 othographes pour une même variable (singlulier et pluriel) qui se déclienra de façon automatique en fonction de la "longueur" d'une variable
-    mesclics_utils.pluralizer:
-        class: MesClics\UtilsBundle\Pluralizer\MesClicsPluralizer
+            - $perPage: 15
     
-    #ajoute une extension twig permettant la conjugaison d'une string au singulier ou pluriel en fonction de la "longueur d'una variable"
-    mesclics_utils.twig.pluralizer_extension:
-        class: MesClics\UtilsBundle\Twig\PluralizerExtension
-        arguments:
-            - "@mesclics_utils.pluralizer"
-        tags:
-            - { name: twig.extension }
-
     mesclics_utils.apis_manager:
         class: MesClics\UtilsBundle\ApisManager\ApisManager
         arguments:

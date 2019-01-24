@@ -1,5 +1,5 @@
 <?php
-namespace MesClics\UtilsBundle\ApisManager\RestApis;
+namespace MesClics\UtilsBundle\ApisManager;
 
 class ApiRequest{
     private $headers;
