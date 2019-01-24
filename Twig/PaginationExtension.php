@@ -10,16 +10,8 @@ class PaginationExtension extends \Twig_Extension{
         $this->paginator = $paginator;
     }
 
-    public function paginate($array){
-        return $this->paginator->paginate($array);
-    }
-
-    public function getPage($page){
-        return $this->paginator->getPage($page);
-    }
-
-    public function getPages(){
-        return $this->paginator->getPages();
+    public function paginate(array $array, int $perPage){
+        return $this->paginator->paginate($array, $perPage);
     }
 
     public function getFunctions(){
@@ -30,8 +22,8 @@ class PaginationExtension extends \Twig_Extension{
 
     public function getFilters(){
         return array(
-            new \Twig_Filter('page', array($this, 'getPage')),
-            new \Twig_Filter('pages', array($this, 'getPages'))
+            new \Twig_Filter('page', array($this->paginator, 'getPage')),
+            new \Twig_Filter('pages', array($this->paginator, 'getPages'))
         );
     }
 
