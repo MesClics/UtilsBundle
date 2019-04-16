@@ -2,9 +2,9 @@
 
 namespace MesClics\UtilsBundle\FormManager;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Form\Form;
 use MesClics\UtilsBundle\Notification\Notification;
 
@@ -26,7 +26,7 @@ abstract class FormManager{
     const SUCCESS_NOTIFICATION_SINGULIER = "L'opération  a réussi.";
     const SUCCESS_NOTIFICATION_PLURIEL = "L'opération  a réussi.";
 
-    public function __construct(EntityManager $em, RequestStack $requestStack, Session $session){
+    public function __construct(EntityManagerInterface $em, RequestStack $requestStack, SessionInterface $session){
         $this->em = $em;
         $this->request = $requestStack->getCurrentRequest();
         $this->session = $session;
