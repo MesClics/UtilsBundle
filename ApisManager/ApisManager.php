@@ -2,15 +2,15 @@
 namespace MesClics\UtilsBundle\ApisManager;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\OptionsResolver\Exception\InvalidArgumentException;
 
 class ApisManager{
     private $apis;
 
-    public function __construct(Array $apis_classes, Session $session){
+    public function __construct($apisClasses, SessionInterface $session){
         $this->apis = new ArrayCollection();
-        foreach($apis_classes as $name => $class){
+        foreach($apisClasses as $name => $class){
             $class_full = $class['class'];
             
             $api = new $class_full($class['options'], $session);
