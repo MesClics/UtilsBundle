@@ -67,6 +67,11 @@ class TrelloApi extends RestApi{
         return self::sendUnirestRequest("get", $endpoint);
     }
 
+    public function getCard($id, Array $options = null){
+        $endpoint = $this->getEndpoint(). 'cards/' . $id;
+        return self::sendUnirestRequest("get", $endpoint, $options);
+    }
+
     public function addCard(Array $datas){
         $endpoint = $this->getEndpoint().'cards';
         return self::sendUnirestRequest("post", $endpoint, $datas);
