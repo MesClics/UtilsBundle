@@ -4,7 +4,7 @@ namespace MesClics\UtilsBundle\Functions;
 
 class MesClicsFunctions{
     
-    public function string_to_multidimensional_array($string, $delimiter, $final_value = null, $invert_string =false) {
+    public function string_to_multidimensional_array($string, $delimiter, $final_value = null, $invert_string = false) {
         $result = array();
 
         if(!$invert_string){
