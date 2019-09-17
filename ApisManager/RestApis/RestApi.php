@@ -2,10 +2,7 @@
 
 namespace MesClics\UtilsBundle\ApisManager\RestApis;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use MesClics\UtilsBundle\Functions\MesClicsFunctions;
 use Symfony\Component\HttpFoundation\Session\Session;
-use MesClics\UtilsBundle\ApisManager\RestApis\ApiRequest;
 use Unirest\Request as UnirestRequest;
 
 abstract class RestApi{
