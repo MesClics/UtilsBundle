@@ -2,11 +2,11 @@
 
 namespace MesClics\UtilsBundle\FormManager;
 
+use Symfony\Component\Form\Form;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\Form\Form;
 use MesClics\UtilsBundle\Notification\Notification;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 abstract class FormManager{
     private $em;
@@ -40,6 +40,16 @@ abstract class FormManager{
         $this->getErrorNotification()
             ->setNotificationSingulier(static::ERROR_NOTIFICATION_SINGULIER)
             ->setNotificationPluriel(static::ERROR_NOTIFICATION_PLURIEL);
+    }
+
+    public function setBeforeUpdate($clonedObject){
+        $this->before_update = $clonedObject;
+
+        return $this;
+    }
+
+    public function getBeforeUpdate(){
+        return $this->before_update;
     }
 
     public function getAction(){
