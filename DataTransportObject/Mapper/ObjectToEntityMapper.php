@@ -37,7 +37,7 @@ class ObjectToEntityMapper implements ObjectToEntityMapperInterface{
                 }
 
                 //check if the entity property value and the dto property value are the same
-                if($save_updated_datas && $dto_value && ($dto_value !== $entity_value)){
+                if($save_updated_datas && ($dto_value !== $entity_value)){
                     //if entity is not new, add to updated datas
                     if(!$entityIsNew){
                         $this->addUpdatedData($property, $entity_value, $dto_value);
@@ -86,7 +86,7 @@ class ObjectToEntityMapper implements ObjectToEntityMapperInterface{
     }
 
     public function getUpdatedData($property_name){
-        if(in_array($property_name, $this->updated_datas)){
+        if(array_key_exists($property_name, $this->updated_datas)){
             return $this->updated_datas[$property_name];
         }
 
