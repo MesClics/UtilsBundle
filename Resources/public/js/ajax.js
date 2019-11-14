@@ -8,7 +8,7 @@ function ajaxGet(url, callback){
 		}
 		else{
         	//action à réaliser en cas d'erreur
-			console.error("Erreur " + req.status + " : " + req.statusText);
+            console.error("Erreur " + req.status + " : " + req.statusText);
 		}
 	});
 
