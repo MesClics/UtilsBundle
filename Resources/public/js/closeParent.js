@@ -1,5 +1,9 @@
 window.addEventListener("load", function () {
-    var closeBtns = document.querySelectorAll(".oocss-close");
+    listenCloseBtns();
+});
+
+function listenCloseBtns(){
+    let closeBtns = document.querySelectorAll(".oocss-close");
     if (closeBtns.length) {
         for (let i = 0; i < closeBtns.length; i++) {
             let btn = closeBtns[i];
@@ -14,4 +18,4 @@ window.addEventListener("load", function () {
             });
         }
     }
-});
+}
