@@ -1,6 +1,7 @@
 <?php
 namespace MesClics\UtilsBundle\DataTransportObject\Mapper;
 
+use MesClics\UtilsBundle\Functions\MesClicsFunctions;
 use MesClics\UtilsBundle\DataTransportObject\Mapper\ObjectToEntityMapperInterface;
 
 class ObjectToEntityMapper implements ObjectToEntityMapperInterface{
@@ -15,14 +16,30 @@ class ObjectToEntityMapper implements ObjectToEntityMapperInterface{
 
     public function mapDTOToEntity($dto, $entity, $save_updated_datas = true){
         $dto_properties = get_object_vars($dto);
-        $entity->getId() ? $entityIsNew = false : $entityIsNew = true;
          
         if(method_exists($dto, 'beforeMappingTo')){
             $dto->beforeMappingTo($entity);
         }
 
         foreach($this->mapping_array as $mapping_item){
-            $updated_data_name = $mapping_item->updated_data_name;                
+            
+            if(get_class($mapping_item) === MappingArrayItem::class){            
+                $this->mapDTOPropertyToEntity($mapping_item, $dto, $entity, $save_updated_datas);
+            }
+
+            if(get_class($mapping_item) === MappingArrayIterableItem::class){
+                $this->mapDTOIterablePropertyToEntity($mapping_item, $dto, $entity, $save_updated_datas);
+            }
+        }
+
+        if(method_exists($dto, 'afterMappingTo')){
+            $dto->afterMappingTo($entity);
+        }
+        //  TODO: guess the getters non specified in mapping_array
+    }
+
+    protected function mapDTOPropertyToEntity($mapping_item, $dto, $entity, $save_updated_datas = true){
+            $updated_data_name = $mapping_item->updated_data_name;
             $dto_getter = $mapping_item->dto_getter;
             $entity_getter = $mapping_item->entity_getter;
             $entity_setter = $mapping_item->entity_setter;
@@ -38,18 +55,39 @@ class ObjectToEntityMapper implements ObjectToEntityMapperInterface{
             //check if the entity property value and the dto property value are the same
             if($save_updated_datas && ($dto_value !== $entity_value)){
                 //if entity is not new, add to updated datas
-                if(!$entityIsNew){
+                if(!$entity->getId()){
                     $this->addUpdatedData($updated_data_name, $entity_value, $dto_value);
                 }
             }
             //update the entity
             $entity->$entity_setter($dto_value);
+    }
+
+    protected function mapDTOIterablePropertyToEntity($mapping_item, $dto, $entity, $save_updated_datas = true){
+        $updated_data_name = $mapping_item->updated_data_name;
+        $dto_getter = $mapping_item->dto_getter;
+        $entity_getter = $mapping_item->entity_getter;
+        $entity_adder = $mapping_item->entity_adder;
+        $entity_remover = $mapping_item->entity_remover;
+
+        // add dto elements not yet present into entity collection
+        foreach($dto->$dto_getter() as $elt){
+           if(!$entity->$entity_getter()->contains($elt)){
+               $entity->$entity_adder($elt);
+            // TODO: dispatch event MesClicsContratEvents::ProjetAttach
+           }
         }
 
-        if(method_exists($dto, 'afterMappingTo')){
-            $dto->afterMappingTo($entity);
+
+        //remove from entity collection elements not present in dto if $entity remover is set
+        if($entity_remover){
+            foreach($entity->$entity_getter() as $elt){
+                if(!in_array($elt, $dto->$dto_getter())){
+                    $entity->$entity_remover($elt);
+                    // TODO: dispatch event MesClicsContratEvents::ProjetDetach
+                }
+            }
         }
-        //  TODO: guess the getters non specified in mapping_array
     }
 
     public function mapEntityToDTO($entity, $dto){
@@ -60,11 +98,13 @@ class ObjectToEntityMapper implements ObjectToEntityMapperInterface{
         }
 
         foreach($this->mapping_array as $mapping_item){
-                $dto_setter = $mapping_item->dto_setter;
-                $entity_getter = $mapping_item->entity_getter;
-                if($entity->$entity_getter()){
-                    $dto->$dto_setter($entity->$entity_getter());
-                }
+            if(get_class($mapping_item) === MappingArrayItem::class){
+                $this->mapEntityPropertyToDTO($mapping_item, $entity, $dto);
+            }
+
+            if(get_class($mapping_item) === MappingArrayIterableItem::class){
+                $this->mapEntityIterablePropertyToDTO($mapping_item, $entity, $dto);
+            }
         }
 
         if(method_exists($dto, 'afterMappingFrom')){
@@ -74,6 +114,26 @@ class ObjectToEntityMapper implements ObjectToEntityMapperInterface{
         //  TODO: guess the getters non specified in mapping_array
 
     }
+
+    protected function mapEntityPropertyToDTO($mapping_item, $entity, $dto){
+        $dto_setter = $mapping_item->dto_setter;
+        $entity_getter = $mapping_item->entity_getter;
+        if($entity->$entity_getter()){
+            $dto->$dto_setter($entity->$entity_getter());
+        }
+    }
+
+    protected function mapEntityIterablePropertyToDTO($mapping_item, $entity, $dto){
+        $updated_data_name = $mapping_item->updated_data_name;
+        $entity_getter = $mapping_item->entity_getter;
+        $dto_adder = $mapping_item->dto_adder;
+
+        foreach($entity->$entity_getter() as $element){
+            $dto->$dto_adder($element);
+        }
+    }
+
+
 
     public function addUpdatedData($updated_data_name, $old_value, $new_value){
         $this->updated_datas[$updated_data_name] = array($old_value, $new_value);

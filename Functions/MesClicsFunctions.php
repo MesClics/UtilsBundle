@@ -2,9 +2,11 @@
 
 namespace MesClics\UtilsBundle\Functions;
 
-class MesClicsFunctions{
+use Doctrine\Common\Collections\ArrayCollection;
+
+final class MesClicsFunctions{
     
-    public function string_to_multidimensional_array($string, $delimiter, $final_value = null, $invert_string = false) {
+    public static function string_to_multidimensional_array($string, $delimiter, $final_value = null, $invert_string = false) {
         $result = array();
 
         if(!$invert_string){
@@ -31,7 +33,7 @@ class MesClicsFunctions{
         return $result;
     }
 
-    public function array_merge_recursive_distinct(array &$array1, array &$array2)
+    public static function array_merge_recursive_distinct(array &$array1, array &$array2)
     {
         $merged = $array1;
         foreach ($array2 as $key => &$value) {
@@ -42,5 +44,23 @@ class MesClicsFunctions{
             }
         }
         return $merged;
+    }
+
+    public static function array_collection_diff(ArrayCollection $arrayCollectionA, ArrayCollection $arrayCollectionB){
+        return $diff = $arrayCollectionA->filter(function($a) use($arrayCollectionB){
+            return $arrayCollectionB->contains($a) === false;
+        });
+    }
+
+    public static function my_function($arrayA, $arrayB){
+        // if(empty($arrayA)){
+        //     return $arrayB;
+        // }
+
+            $result = array();
+        foreach($arrayB as $object){
+            $result[] = $object->getId();
+        }
+         dump($result);
     }
 }
