@@ -18,7 +18,7 @@ class MappingArrayItem{
 
         if($entityGetterAndSetter){
             $this->entity_getter = $entityGetterAndSetter[0];
-            $this->entiity_getter = $entityGetterAndSetter[1];
+            $this->entiity_setter = $entityGetterAndSetter[1];
         } else{
             $this->entity_getter = $dtoGetterAndSetter[0];
             $this->entity_setter = $dtoGetterAndSetter[1];
