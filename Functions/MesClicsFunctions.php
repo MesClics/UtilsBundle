@@ -3,8 +3,14 @@
 namespace MesClics\UtilsBundle\Functions;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 final class MesClicsFunctions{
+    
+    public static function addFlash(string $label, string $message, SessionInterface $session){
+            $session->getFlashBag()->add($label, $message);
+    }
+
     
     public static function string_to_multidimensional_array($string, $delimiter, $final_value = null, $invert_string = false) {
         $result = array();
