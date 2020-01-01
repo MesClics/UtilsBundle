@@ -74,7 +74,6 @@ class ObjectToEntityMapper implements ObjectToEntityMapperInterface{
         foreach($dto->$dto_getter() as $elt){
            if(!$entity->$entity_getter()->contains($elt)){
                $entity->$entity_adder($elt);
-            // TODO: dispatch event MesClicsContratEvents::ProjetAttach
            }
         }
 
@@ -84,7 +83,6 @@ class ObjectToEntityMapper implements ObjectToEntityMapperInterface{
             foreach($entity->$entity_getter() as $elt){
                 if(!in_array($elt, $dto->$dto_getter())){
                     $entity->$entity_remover($elt);
-                    // TODO: dispatch event MesClicsContratEvents::ProjetDetach
                 }
             }
         }
