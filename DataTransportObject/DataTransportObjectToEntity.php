@@ -2,6 +2,7 @@
 
 namespace MesClics\UtilsBundle\DataTransportObject;
 
+use Doctrine\ORM\EntityManagerInterface;
 use MesClics\UtilsBundle\DataTransportObject\Mapper\ObjectToEntityMapper;
 use MesClics\UtilsBundle\DataTransportObject\DataTransportObjectToEntityInterface;
 
