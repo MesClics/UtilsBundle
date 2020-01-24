@@ -55,12 +55,14 @@ class ObjectToEntityMapper implements ObjectToEntityMapperInterface{
             //check if the entity property value and the dto property value are the same
             if($save_updated_datas && ($dto_value !== $entity_value)){
                 //if entity is not new, add to updated datas
-                if(!$entity->getId()){
+                if($entity->getId()){
                     $this->addUpdatedData($updated_data_name, $entity_value, $dto_value);
                 }
             }
             //update the entity
-            $entity->$entity_setter($dto_value);
+            if($dto_value){
+                $entity->$entity_setter($dto_value);
+            }
     }
 
     protected function mapDTOIterablePropertyToEntity($mapping_item, $dto, $entity, $save_updated_datas = true){
