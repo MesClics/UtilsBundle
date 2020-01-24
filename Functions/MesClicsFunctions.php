@@ -2,10 +2,16 @@
 
 namespace MesClics\UtilsBundle\Functions;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 final class MesClicsFunctions{
+    private $session;
+    
+    public function __construct(SessionInterface $session){
+        $this->session = $session;
+    }
     
     public static function addFlash(string $label, string $message, SessionInterface $session){
             $session->getFlashBag()->add($label, $message);
@@ -68,5 +74,15 @@ final class MesClicsFunctions{
             $result[] = $object->getId();
         }
          dump($result);
+    }
+
+    public static function in_array_recursive($needle, $haystack, $strict = false) {
+        foreach ($haystack as $item) {
+            if (($strict ? $item === $needle : $item == $needle) || (is_array($item) && in_array_recursive($needle, $item, $strict))) { 
+                return $item;
+            }
+        }
+
+        return false;
     }
 }
