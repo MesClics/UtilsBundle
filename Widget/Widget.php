@@ -2,11 +2,7 @@
 
 namespace MesClics\UtilsBundle\Widget;
 
-use Symfony\Component\Form\FormFactory;
-use Symfony\Component\Form\FormFactoryInterface;
-use MesClics\UtilsBundle\Widget\Handler\WidgetHandler;
-use Symfony\Component\EventDispatcher\EventDispatcher;
-
+use Symfony\Component\HttpFoundation\Request;
 abstract class Widget{
     protected $handler;
 
@@ -16,6 +12,12 @@ abstract class Widget{
 
     public function getHandler(){
         return $this->handler;
+    }
+
+    protected function handleRequest(Request $request){
+        if($widget->getHandler()){
+            $widget->getHandler()->handleRequest($this, $request);
+        }
     }
     
     abstract public function getName();
