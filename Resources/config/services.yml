@@ -14,3 +14,12 @@ services:
         arguments:
             - '%trello%'
             - '@session'
+
+    MesClics\UtilsBundle\Widget\Widget:
+        abstract: true
+        autowire: true
+
+    MesClics\UtilsBundle\Widget\Handler:
+        abstract: true
+        autowire: true
+
