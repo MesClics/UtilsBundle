@@ -1,5 +1,4 @@
     window.addEventListener("load", function(){
-    console.log("html modifier loaded");
 
     listenHTMLModifyBtns();
 })
@@ -24,7 +23,6 @@ function listenHTMLModifyBtns(){
             modifyHTML(e.target);
 
             document.addEventListener("load", function(){
-                console.log(scroll);
                 if (document.querySelector(".desk-main")) {
                     var scrollContainer = document.querySelector(".desk-main");
                 } else {
