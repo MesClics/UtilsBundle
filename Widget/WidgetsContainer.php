@@ -16,7 +16,9 @@ abstract class WidgetsContainer{
     public function handleRequest(Request $request){
         $widgets = $this->getWidgets();
         foreach($widgets as $widget){
-            $widget->getHandler()->handleRequest($widget, $request);
+            if($widget->getHandler()){
+                $widget->getHandler()->handleRequest($widget, $request);
+            }
         }
     }
 
@@ -26,5 +28,14 @@ abstract class WidgetsContainer{
 
     public function getWidgets(){
         return $this->widgets;
+    }
+
+    public function getWidget(string $name){
+        foreach($this->widgets as $widget){
+            if($widget->getName() === $name){
+                return $widget;
+            }
+        }
+        return null;
     }
 }
