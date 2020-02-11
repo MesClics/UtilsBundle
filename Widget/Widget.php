@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 abstract class Widget{
     protected $handler;
     protected $class;
+    protected $title;
 
     protected function createForm($type, $data = null, $options = array()){
         return $this->handler->form_factory->create($type, $data, $options);
@@ -33,6 +34,18 @@ abstract class Widget{
 
     public function getClass(){
         return $this->class;
+    }
+
+    public function setTitle(string $title){
+        $this->title = $title;
+    }
+
+    public function getTitle(){
+        return $this->title;
+    }
+
+    public function addVariable(string $name, $value){
+        $this->variables[$name] = $value;
     }
     
     abstract public function getName();
