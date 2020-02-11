@@ -1,0 +1,13 @@
+{% block widget %}
+    <section class="{% block widgetClass %}{% endblock widgetClass %}">
+    {% block widgetHead %}
+        {% block title %}
+            {% block widgetTitle %}{% endblock widgetTitle %}
+        {% endblock title %}
+    {% endblock widgetHead %}
+
+    {% block widgetContentContainer %}{% endblock widgetContentContainer %}
+
+    {% block widgetFooter %}{% endblock widgetFooter %}
+    </section>
+{% endblock widget %}
