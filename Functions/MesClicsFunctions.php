@@ -12,6 +12,21 @@ final class MesClicsFunctions{
     public function __construct(SessionInterface $session){
         $this->session = $session;
     }
+
+    public function string_to_camel(string $foo){
+        // replace underscores and - by blanks
+        $foo = str_replace("_", " ", $foo);
+        $foo = str_replace("-", " ", $foo);
+        // lowercase everything
+        $foo = strtolower($foo);
+        // uppercase first letter of each word
+        $foo = ucwords($foo);
+        // remove blanks
+        $foo = str_replace(" ", "", $foo);
+        // lowercase first letter
+        $foo = lcfirst($foo);
+        return $foo;
+    }
     
     public static function addFlash(string $label, string $message, SessionInterface $session){
             $session->getFlashBag()->add($label, $message);
