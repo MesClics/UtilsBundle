@@ -23,9 +23,5 @@ abstract class WidgetHandler{
         $this->router = $router;
     }
 
-    public function redirectToRoute($route, $args){
-        return new RedirectResponse($this->router->generate($route, $args));
-    }
-
     abstract function handleRequest(Widget $widget, Request $request);
 }
