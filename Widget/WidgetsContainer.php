@@ -17,7 +17,10 @@ abstract class WidgetsContainer{
         $widgets = $this->getWidgets();
         foreach($widgets as $widget){
             if($widget->getHandler()){
-                $widget->getHandler()->handleRequest($widget, $request);
+                $res = $widget->getHandler()->handleRequest($widget, $request);
+                if($res){
+                    return $res;
+                }
             }
         }
     }

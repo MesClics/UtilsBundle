@@ -26,10 +26,20 @@ abstract class Widget{
         $toArray = explode(" ", $this->class);
         $toArray[] = $class;
         $this->class = implode(" ", $toArray);
+
+        return $this;
+    }
+
+    public function addClasses(array $classes){
+        foreach($classes as $class){
+            $this->addClass($class);
+        }
     }
 
     public function setClass(string $class){
         $this->class = $class;
+
+        return $this;
     }
 
     public function getClass(){
@@ -38,6 +48,8 @@ abstract class Widget{
 
     public function setTitle(string $title){
         $this->title = $title;
+
+        return $this;
     }
 
     public function getTitle(){
@@ -46,6 +58,8 @@ abstract class Widget{
 
     public function addVariable(string $name, $value){
         $this->variables[$name] = $value;
+
+        return $this;
     }
     
     abstract public function getName();
