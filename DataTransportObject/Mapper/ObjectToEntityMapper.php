@@ -23,7 +23,7 @@ class ObjectToEntityMapper implements ObjectToEntityMapperInterface{
 
         foreach($this->mapping_array as $mapping_item){
             
-            if(get_class($mapping_item) === MappingArrayItem::class){            
+            if(get_class($mapping_item) === MappingArrayItem::class){
                 $this->mapDTOPropertyToEntity($mapping_item, $dto, $entity, $save_updated_datas);
             }
 
@@ -59,8 +59,9 @@ class ObjectToEntityMapper implements ObjectToEntityMapperInterface{
                     $this->addUpdatedData($updated_data_name, $entity_value, $dto_value);
                 }
             }
+
             //update the entity
-            if($dto_value){
+            if(($dto_value || $dto_value === false) && $dto_value !== $entity_value){
                 $entity->$entity_setter($dto_value);
             }
     }
@@ -118,7 +119,7 @@ class ObjectToEntityMapper implements ObjectToEntityMapperInterface{
     protected function mapEntityPropertyToDTO($mapping_item, $entity, $dto){
         $dto_setter = $mapping_item->dto_setter;
         $entity_getter = $mapping_item->entity_getter;
-        if($entity->$entity_getter()){
+        if($entity->$entity_getter() || $entity->$entity_getter() === false){
             $dto->$dto_setter($entity->$entity_getter());
         }
     }
