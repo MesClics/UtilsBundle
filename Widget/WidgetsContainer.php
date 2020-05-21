@@ -27,6 +27,7 @@ abstract class WidgetsContainer{
 
     public function addWidget(Widget $widget){
         $this->widgets[] = $widget;
+        return $this;
     }
 
     public function getWidgets(){
