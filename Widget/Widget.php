@@ -16,9 +16,9 @@ abstract class Widget{
         return $this->handler;
     }
 
-    protected function handleRequest(Request $request){
-        if($widget->getHandler()){
-            $widget->getHandler()->handleRequest($this, $request);
+    public function handleRequest(Request $request){
+        if($this->getHandler()){
+            return $this->getHandler()->handleRequest($this, $request);
         }
     }
 
@@ -34,6 +34,8 @@ abstract class Widget{
         foreach($classes as $class){
             $this->addClass($class);
         }
+
+        return $this;
     }
 
     public function setClass(string $class){
