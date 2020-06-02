@@ -23,5 +23,9 @@ abstract class WidgetHandler{
         $this->router = $router;
     }
 
+    public function getRepository($entityClass){
+        return $this->entity_manager->getRepository($entityClass);
+    }
+
     abstract function handleRequest(Widget $widget, Request $request);
 }
