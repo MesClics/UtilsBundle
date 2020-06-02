@@ -31,7 +31,12 @@ abstract class WidgetsContainer{
     }
 
     public function getWidgets(){
-        return $this->widgets;
+        $filterActiveWidgets = function($widget){
+            if($widget->isActive()){
+                return $widget;
+            }
+        };
+        return array_filter($this->widgets, $filterActiveWidgets);
     }
 
     public function getWidget(string $name){

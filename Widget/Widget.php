@@ -63,6 +63,10 @@ abstract class Widget{
 
         return $this;
     }
+
+    public function isActive(){
+        return true;
+    }
     
     abstract public function getName();
     abstract public function getTemplate();
