@@ -5,7 +5,7 @@ This util is made for generating widgets as services that can be used in control
 
 ### Files architecture
 1. In your bundle, create a Widget directory.
- - Inside this directory you will have to create one class that extends the parent MesClics\UtilsBundle\Widget\Widget class for each Widget you want to set. Il will define the structure of the widget.
+ - Inside this directory you will have to create one class that extends the parent MesClics\UtilsBundle\Widget\Widget class for each Widget you want to set. It will define the structure of the widget.
  - (optional : only for interactive widgets) In a subdirectory called Handler, you will  have to create a class that extends the parent MesClics\UtilsBundle\Widget\Handler\WidgetHandler class for each widget you set. It will define all the operations that will be done on the widget content.
 
 2. (optional). If you want to set a WidgetContainer objects that will contain all the widgets used for a particular task or page, you can create a new file inside the Widget directoy of your bundle that extends the parent MesClics\UtilsBundle\Widget\WidgetsContainer class.
@@ -49,7 +49,7 @@ class FirstWidget extends MesClics\UtilsBundle\Widget\Widget{
         return 'MyBundle:Widgets:my_first_widget.html.twig';
     }
 
-    public function getVariables() ? array{
+    public function getVariables() ? array|null{
         return array(
             'param1' => $this->getParam1(),
             'param2' => $this->getParam2(),
