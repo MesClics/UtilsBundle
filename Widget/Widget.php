@@ -7,6 +7,7 @@ abstract class Widget{
     protected $handler;
     protected $class;
     protected $title;
+    protected $variables;
 
     protected function createForm($type, $data = null, $options = array()){
         return $this->handler->form_factory->create($type, $data, $options);
@@ -64,11 +65,22 @@ abstract class Widget{
         return $this;
     }
 
+    public function addVariables(array $variables){
+        foreach($variables as $name => $value){
+            $this->variables[$name] = $value;
+        }
+
+        return $this;
+    }
+
+    public function getVariables(){
+        return $this->variables;
+    }
+
     public function isActive(){
         return true;
     }
     
     abstract public function getName();
     abstract public function getTemplate();
-    abstract public function getVariables();
 }
