@@ -3,6 +3,7 @@
 namespace MesClics\UtilsBundle\Functions;
 
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -99,5 +100,37 @@ final class MesClicsFunctions{
         }
 
         return false;
+    }
+
+     public static function getQueryOrderParams(Request $request, string $default_order_by = null, int $limit = null){
+        $res = array(
+            'by' => $default_order_by,
+            'direction' => null,
+            'offset' => 0,
+            'limit' => $limit
+        );
+
+        if($request->query->get('page')){
+            // get orderBy param
+            $res['page'] = $request->query->get('page');
+            if($limit){
+                $res['offset'] += (intval($res['page']) - 1) * $limit;
+            }
+        } else if($limit){
+            $res['page'] = 1;
+        };
+
+        if($request->query->get('order-by')){
+            $res['by'] = MesClicsFunctions::string_to_camel($request->query->get('order-by'));
+        }
+
+        if($request->query->get('order')){
+            $res['direction'] = $request->query->get('order');
+        }
+
+        if(empty($res)){
+            return null;
+        }
+        return $res;
     }
 }
